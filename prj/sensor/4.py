@@ -1,70 +1,17 @@
 import cv2 
-  
- 
-face_cascade = cv2.CascadeClassifier('data/haarcascade_frontalcatface.xml') 
+import func 
+
+cat_classifier = cv2.CascadeClassifier('data/haarcascade_frontalcatface.xml') 
 body_classifier = cv2.CascadeClassifier('data/haarcascade_fullbody.xml') 
 ubody_classifier = cv2.CascadeClassifier('data/haarcascade_upperbody.xml') 
 face_classifier = cv2.CascadeClassifier('data/haarcascade_frontalface_default.xml') 
 
 
-  
-def cat():
-    # Detects faces of different sizes in the input image 
-    faces = face_cascade.detectMultiScale(gray, 1.3, 5) 
-
-    for (x,y,w,h) in faces: 
-        # To draw a rectangle in a face 
-        cv2.rectangle(img,(x,y),(x+w,y+h),(255,255,0),2) 
-        roi_gray = gray[y:y+h, x:x+w] 
-        roi_color = img[y:y+h, x:x+w] 
-  
-  
-    # Display an image in a window 
-    cv2.imshow('img',img) 
-
-
-
-
-def fullBody():
-    # Detects faces of different sizes in the input image 
-    bodies = body_classifier.detectMultiScale(gray, 1.1, 3)
-    
-    # Extract bounding boxes for any bodies identified
-    for (x,y,w,h) in bodies:
-        cv2.rectangle(img, (x, y), (x+w, y+h), (255, 50, 80), 2)
-        cv2.imshow('img', img)
-
-
-def upperBody():
-    # Detects faces of different sizes in the input image 
-    bodies = ubody_classifier.detectMultiScale(gray, 1.1, 5)
-    
-    # Extract bounding boxes for any bodies identified
-    for (x,y,w,h) in bodies:
-        cv2.rectangle(img, (x, y), (x+w, y+h), (255, 50, 80), 2)
-        cv2.imshow('img', img)
-  
-
-
-def face():
-    # Detects faces of different sizes in the input image 
-    faces = face_classifier.detectMultiScale(gray, 1.0485258, 6)
-    
-    # Extract bounding boxes for any bodies identified
-    for (x,y,w,h) in faces:
-        cv2.rectangle(img, (x, y), (x+w, y+h), (50, 255, 100), 2)
-        cv2.imshow('img', img) 
-
-
-
-
-
-
 # capture frames from a camera 
 cap = cv2.VideoCapture(0) 
-  
+
 # loop runs if capturing has been initialized. 
-while cap.isOpened(): 
+while 1: 
   
     # reads frames from a camera 
     ret, img = cap.read() 
@@ -72,14 +19,13 @@ while cap.isOpened():
     # convert to gray scale of each frames 
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY) 
   
-    fullBody()
-    cat()
-    face()
-    upperBody()
-
+    func.fullBody(body_classifier,gray,img)
+    func.cat(cat_classifier,gray,img)
+    func.face(face_classifier,gray,img)
+    func.upperBody(ubody_classifier,gray,img)
+    # func.body(img)
     # Wait for Esc key to stop 
-    k = cv2.waitKey(30) & 0xff
-    if k == 27: 
+    if cv2.waitKey(1) & 0xFF == ord('q'):
         break
   
 # Close the window 
