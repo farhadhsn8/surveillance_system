@@ -2,6 +2,7 @@ import cv2
 import datetime
 import mysql.connector
 from numpy import random
+import requests
 
 
 
@@ -19,7 +20,7 @@ def cat(cat_classifier,gray,img,catCounter ,catTime):
         print(cat)
         catCounter=0
         catTime = datetime.datetime.now()
-        saveEvent(img ,catTime ,"cat" )
+        sendEvent(img ,catTime ,"cat" )
 
     # Display an image in a window 
     cv2.imshow('img',img) 
@@ -43,7 +44,7 @@ def fullBody(body_classifier,gray,img,bodyCounter ,bodyTime):
         print(bodies)
         bodyCounter=0
         bodyTime = datetime.datetime.now()
-        saveEvent(img ,bodyTime ,"body" )
+        sendEvent(img ,bodyTime ,"body" )
 
     cv2.imshow('img', img)
     return bodyTime , bodyCounter 
@@ -68,7 +69,7 @@ def upperBody(ubody_classifier,gray,img,bodyCounter ,bodyTime):
         print(ubodies)
         bodyCounter=0
         bodyTime = datetime.datetime.now()
-        saveEvent(img ,bodyTime , "body")
+        sendEvent(img ,bodyTime , "body")
 
     cv2.imshow('img', img )
     return bodyTime , bodyCounter
@@ -89,7 +90,7 @@ def face(face_classifier,gray,img,faceCounter , faceTime):
         print(faces)
         faceTime = datetime.datetime.now()
         faceCounter=0
-        saveEvent(img ,faceTime , "face")
+        sendEvent(img ,faceTime , "face")
 
     cv2.imshow('img', img) 
     return faceTime , faceCounter
@@ -99,7 +100,7 @@ def face(face_classifier,gray,img,faceCounter , faceTime):
 
 
 
-def saveEvent(img , time ,type):
+def saveEvent(img , time ,type): #depreciate
 
     mydb = mysql.connector.connect(
      host="localhost",
@@ -109,7 +110,9 @@ def saveEvent(img , time ,type):
      database="surveillance_system"
     )
 
-    address = 'images/' + type + '_' + str(random.randint(100008000)) + '.png'
+    time = time.strftime('%Y-%m-%d')
+    
+    address = 'images/' + type + '_' + str(time) + '_' + str(random.randint(100000)) + '.png'    
     status = cv2.imwrite(address , img)
     print(status)
     mycursor = mydb.cursor()
@@ -119,6 +122,27 @@ def saveEvent(img , time ,type):
     mycursor.execute(sql, val)
 
 
+
+
+def sendEvent(img , time ,type):
+
+    URL = "http://localhost:8000/api/event/create"
+    
+    time = time.strftime('%Y-%m-%d')
+    
+    address = 'images/' + type + '_' + str(time) + '_' + str(random.randint(100000)) + '.png'
+    status = cv2.imwrite(address , img)
+    print(status)
+
+    data = {'type': type ,
+            'image' : address }
+  
+    r = requests.post(url = URL, data = data)
+
+    # extracting response text 
+    pastebin_url = r.text
+    print("The pastebin URL is:%s"%pastebin_url)
+    
 
 
 

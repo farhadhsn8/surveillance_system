@@ -47,7 +47,7 @@ class EventController extends Controller
         ]);
 
         return response()->json([
-            'message' =>'Event created successfully'
+            'message' =>$request->type.'Event created successfully'
         ] , 201);
     }
 

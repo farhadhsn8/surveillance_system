@@ -2,7 +2,7 @@ import cv2
 import func 
 import datetime
 
-PICTURE_TIME = 0.5
+PICTURE_TIME = 1
 catCounter = 0
 bodyCounter = 0
 faceCounter = 0
