@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\SendEmailJob;
+use App\Mail\LogMail;
 use App\Models\Event;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 
 class EventController extends Controller
@@ -46,10 +49,27 @@ class EventController extends Controller
             'done' => false,
         ]);
 
+
+        SendEmailJob::dispatch($request->type);
+//        $response = $this->sendEmail($request);
+
         return response()->json([
             'message' =>$request->type.'Event created successfully'
         ] , 201);
     }
+
+
+
+
+    public function sendEmail($request)
+    {
+        Mail::to('farhad@gmail.com')->send(new LogMail($request->type));
+        return response()->json([
+            'message' =>$request->type.'Event created successfully'
+        ] , 201);
+    }
+
+
 
     /**
      * Display the specified resource.
