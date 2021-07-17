@@ -6,6 +6,7 @@ use App\Jobs\SendEmailJob;
 use App\Mail\LogMail;
 use App\Models\Event;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 
@@ -43,19 +44,31 @@ class EventController extends Controller
             'type'=>['required'],
             'image'=>['required'],
         ]);
-        Event::create([
+
+        $event = new Event;
+
+        $event->create([
             'type'=>$request->type,
             'image' => $request->image,
             'done' => false,
         ]);
 
 
-        SendEmailJob::dispatch($request->type);
+
+
+
+//        SendEmailJob::dispatch($request->type , $request->image);
+        SendEmailJob::dispatch($request->type , $request->image);
 //        $response = $this->sendEmail($request);
+
+
 
         return response()->json([
             'message' =>$request->type.'Event created successfully'
         ] , 201);
+
+
+
     }
 
 
