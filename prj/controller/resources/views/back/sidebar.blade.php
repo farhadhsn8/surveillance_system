@@ -31,10 +31,7 @@
             </div>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="pages/charts/chartjs.html">
-                <i class="menu-icon typcn typcn-th-large-outline"></i>
-                <span class="menu-title">رخداد و اقدام</span>
-            </a>
+                <a class="nav-link" href="{{route('actions')}}">لیست رخداد و اقدام ها</a>
         </li>
         <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#ui-basic1" aria-expanded="false" aria-controls="ui-basic">
