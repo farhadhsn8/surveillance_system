@@ -23,9 +23,8 @@
                     <div class="card">
                         <div class="card-body">
 
-                            <div>
                                 @include('back.message')
-                            </div>
+
 
                             <form action="{{ route('actions.store') }}" method="POST">
                                 @csrf
@@ -71,8 +70,7 @@
 
             </div>
         </div>
-        <!-- content-wrapper ends -->
-        <!-- partial:partials/_footer.html -->
+
     @include('back.footer')
     <!-- partial -->
     </div>
