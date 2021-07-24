@@ -12,16 +12,16 @@ class LogMail extends Mailable
     use Queueable, SerializesModels;
 
     private $type;
-    private $image;
+    private $content;
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($type , $image)
+    public function __construct($type , $content)
     {
         $this->type = $type;
-        $this->image = $image;
+        $this->content = $content;
     }
 
     /**
@@ -31,6 +31,6 @@ class LogMail extends Mailable
      */
     public function build()
     {
-        return $this->view('Mail.emailBody')->subject('مشاهده رخداد')->with('type',$this->type)->with('image' , $this->image);
+        return $this->view('Mail.emailBody')->subject($this->type)->with('content',$this->content);
     }
 }

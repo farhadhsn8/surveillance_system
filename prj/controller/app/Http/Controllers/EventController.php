@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Jobs\SendEmailJob;
 use App\Mail\LogMail;
 use App\Models\Event;
+use App\Models\event_action;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
@@ -53,15 +54,9 @@ class EventController extends Controller
             'done' => false,
         ]);
 
+        $content = event_action::where('event',$request->type)->first()->action;
 
-
-
-
-//        SendEmailJob::dispatch($request->type , $request->image);
-        SendEmailJob::dispatch($request->type , $request->image);
-//        $response = $this->sendEmail($request);
-
-
+        SendEmailJob::dispatch($request->type , $request->image , $content);
 
         return response()->json([
             'message' =>$request->type.'Event created successfully'

@@ -19,15 +19,17 @@ class SendEmailJob implements ShouldQueue
 
     private $type;
     private $image;
+    private $content;
     /**
      * Create a new job instance.
      *
      * @return void
      */
-    public function __construct($type , $image)
+    public function __construct($type , $image , $content)
     {
         $this->type = $type;
         $this->image= $image;
+        $this->content= $content;
     }
 
     /**
@@ -39,7 +41,7 @@ class SendEmailJob implements ShouldQueue
     {
 //        sleep(30);
 
-        Mail::to('farhad@gmail.com')->send(new LogMail($this->type , $this->image));
+        Mail::to('farhad@gmail.com')->send(new LogMail($this->type , $this->content));
 
         DB::table('events')->where('image',$this->image)->update([
             'done' => true

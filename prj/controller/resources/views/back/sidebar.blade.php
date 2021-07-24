@@ -7,8 +7,8 @@
                     <div class="dot-indicator bg-success"></div>
                 </div>
                 <div class="text-wrapper">
-                    <p class="profile-name">فرهاد حسینی</p>
-                    <p class="designation">مدیریت سایت</p>
+                    <p class="profile-name">{{ Auth::user()->name }}</p>
+                    <p class="designation"> {{ Auth::user()->email }}</p>
                 </div>
             </a>
         </li>
@@ -56,7 +56,7 @@
 
         <li class="nav-item">
 
-            <a class="nav-link" href="/">
+            <a class="nav-link" href="#">
                 <i class="menu-icon typcn typcn-th-large-outline"></i>
             <form action="{{route('logout')}}" method="POST">
                 @csrf
