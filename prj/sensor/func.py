@@ -130,8 +130,9 @@ def sendEvent(img , time ,type):
     
     time = time.strftime('%Y-%m-%d')
     
-    address = 'images/' + type + '_' + str(time) + '_' + str(random.randint(100000)) + '.png'
-    status = cv2.imwrite(address , img)
+    address =  type + '_' + str(time) + '_' + str(random.randint(100000)) + '.png'
+    status = cv2.imwrite('images/'+address , img)
+    cv2.imwrite('../controller/public/images/'+address , img)
     print(status)
 
     data = {'type': type ,

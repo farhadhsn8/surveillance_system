@@ -42,7 +42,7 @@
             <div class="collapse" id="ui-basic1">
                 <ul class="nav flex-column sub-menu">
                     <li class="nav-item">
-                        <a class="nav-link" href="#">لیست تمام رخداد ها</a>
+                        <a class="nav-link" href="{{route('events')}}">لیست تمام رخداد ها</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">لیست رخداد های اقدام نشده</a>
