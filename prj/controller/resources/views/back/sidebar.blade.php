@@ -45,7 +45,7 @@
                         <a class="nav-link" href="{{route('events')}}">لیست تمام رخداد ها</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">لیست رخداد های اقدام نشده</a>
+                        <a class="nav-link" href="{{route('events.no_action')}}">لیست رخداد های اقدام نشده</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">جستوجو بر اساس تاریخ</a>

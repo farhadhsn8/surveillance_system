@@ -37,6 +37,7 @@ Route::prefix('actions')->middleware('auth')->group(function(){
 
 Route::prefix('events')->middleware('auth')->group(function(){
     Route::get('/',[EventController::class , 'index'])->name('events');
+    Route::get('/no_action',[EventController::class , 'no_action'])->name('events.no_action');
     Route::get('/show-image/{image}',[EventController::class , 'show_image'])->name('events.show_image');
     Route::delete('/destroy/{event}',[EventController::class , 'destroy'])->name('events.destroy');
 

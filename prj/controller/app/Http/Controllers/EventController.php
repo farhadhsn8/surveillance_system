@@ -20,6 +20,12 @@ class EventController extends Controller
         return view('back.events.events',compact('events'));
     }
 
+    public function no_action()
+    {
+        $events = Event::where('done',false)->get();
+        return view('back.events.events',compact('events'));
+    }
+
 
     public function show_image($image)
     {
