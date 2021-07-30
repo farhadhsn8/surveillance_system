@@ -61,8 +61,6 @@ class EventController extends Controller
     }
 
 
-
-
     public function sendEmail($request)
     {
         Mail::to('farhad@gmail.com')->send(new LogMail($request->type));
@@ -80,26 +78,18 @@ class EventController extends Controller
     }
 
 
-    public function edit(Event $event)
-    {
-        //
-    }
 
-
-    public function update(Request $request, Event $event)
-    {
-        //
-    }
 
 
     public function destroy(Event $event)
     {
         if ($this->removeImage($event->image)){
             $event->delete();
-            $msg='حذف  با موفقیت انجام شد';
+            $msg='  با موفقیت حذف شد';
             return redirect(route('events'))->with('success',$msg);
         }
     }
+
 
     public function removeImage($img)
     {
