@@ -40,6 +40,7 @@ Route::prefix('events')->middleware('auth')->group(function(){
     Route::get('/no_action',[EventController::class , 'no_action'])->name('events.no_action');
     Route::get('/show-image/{image}',[EventController::class , 'show_image'])->name('events.show_image');
     Route::delete('/destroy/{event}',[EventController::class , 'destroy'])->name('events.destroy');
+    Route::get('/date_page',[EventController::class , 'date_page'])->name('date_page');
 
 });
 

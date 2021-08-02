@@ -6,7 +6,7 @@
             <div class="row page-title-header">
                 <div class="col-12">
                     <div class="page-header">
-                        <h4 class="page-title"> مدیریت رخدادها </h4>
+                        <h4 class="page-title"> پرس و جو براساس تاریخ </h4>
                     </div>
                 </div>
 
@@ -19,38 +19,20 @@
                     <div class="card">
                         <div class="card-body">
                             @include('back.message')
-                            <table class="table table-hover">
-                                <thead>
-                                <tr>
-                                    <th>نوع</th>
-                                    <th> تصویر گرفته شده</th>
-                                    <th>اقدام به ایمیل</th>
-                                    <th>تاریخ رخداد</th>
-                                    <th>تاریخ اقدام</th>
-                                    <th>حذف</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-
-                                @foreach ($events as $event)
-
-                                    <tr>
-                                        <td>{{$event->type}}</td>
-                                        <td><a href="{{route('events.show_image',$event->image)}}"><img src="/images/{{$event->image}}" width="70" height="70"></a></td>
-                                        <td>{{$event->done}}</td>
-                                        <td>{{$event->created_at}}</td>
-                                        <td>{{$event->updated_at}}</td>
-                                        <td>
-                                            <form action="{{route('events.destroy',$event)}}" method="POST">
-                                                @csrf
-                                                @method('delete')
-                                                <button class="btn-danger" type="submit" onclick="return confirm('آیا سطر مورد نظر حذف شود؟')"> حذف</button>
-                                            </form>
-                                        </td>
-                                    </tr>
-                                @endforeach
-                                </tbody>
-                            </table>
+                            <form action="#" method="POST">
+                                @csrf
+                                <div class="form-group">
+                                    <label for="from">از:</label>
+                                    <input type="date"  name="from">
+                                </div>
+                                <div class="form-group">
+                                    <label for="to">تا:  </label>
+                                    <input type="date"  name="to">
+                                </div>
+                                <div class="form-group">
+                                    <input type="submit" class="btn btn-success">
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>

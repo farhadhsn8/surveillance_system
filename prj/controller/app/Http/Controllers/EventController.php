@@ -72,9 +72,9 @@ class EventController extends Controller
 
 
 
-    public function show(Event $event)
+    public function date_page()
     {
-        //
+        return view('back.events.date_events');
     }
 
 
