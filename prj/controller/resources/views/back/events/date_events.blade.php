@@ -19,7 +19,7 @@
                     <div class="card">
                         <div class="card-body">
                             @include('back.message')
-                            <form action="#" method="POST">
+                            <form action="{{ route('date_query') }}" method="POST">
                                 @csrf
                                 <div class="form-group">
                                     <label for="from">از:</label>

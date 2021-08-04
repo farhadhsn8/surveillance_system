@@ -41,6 +41,7 @@ Route::prefix('events')->middleware('auth')->group(function(){
     Route::get('/show-image/{image}',[EventController::class , 'show_image'])->name('events.show_image');
     Route::delete('/destroy/{event}',[EventController::class , 'destroy'])->name('events.destroy');
     Route::get('/date_page',[EventController::class , 'date_page'])->name('date_page');
+    Route::post('/date_query',[EventController::class , 'date_query'])->name('date_query');
 
 });
 

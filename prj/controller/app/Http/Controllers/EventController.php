@@ -79,6 +79,16 @@ class EventController extends Controller
 
 
 
+    public function date_query(Request $request)
+    {
+        $from = $request->from;
+        $to = $request->to;
+        $events = Event::whereBetween('created_at', [$from, $to])->get();
+        return view('back.events.events',compact('events'));
+    }
+
+
+
 
 
     public function destroy(Event $event)
