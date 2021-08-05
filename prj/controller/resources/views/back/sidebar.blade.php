@@ -25,7 +25,7 @@
                         <a class="nav-link" href="#">کاربران</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">تنظیمات حساب</a>
+                        <a class="nav-link" href="{{route('password.update')}}"> تغییر رمز عبور</a>
                     </li>
                 </ul>
             </div>
