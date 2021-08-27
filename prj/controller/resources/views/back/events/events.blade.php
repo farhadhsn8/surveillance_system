@@ -26,7 +26,6 @@
                                     <th> تصویر گرفته شده</th>
                                     <th>اقدام به ایمیل</th>
                                     <th>تاریخ رخداد</th>
-                                    <th>تاریخ اقدام</th>
                                     <th>حذف</th>
                                 </tr>
                                 </thead>
@@ -39,7 +38,6 @@
                                         <td><a href="{{route('events.show_image',$event->image)}}"><img src="/images/{{$event->image}}" width="70" height="70"></a></td>
                                         <td>{{$event->done}}</td>
                                         <td>{{$event->created_at}}</td>
-                                        <td>{{$event->updated_at}}</td>
                                         <td>
                                             <form action="{{route('events.destroy',$event)}}" method="POST">
                                                 @csrf
