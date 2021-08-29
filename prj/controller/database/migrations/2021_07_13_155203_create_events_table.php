@@ -15,10 +15,11 @@ class CreateEventsTable extends Migration
     {
         Schema::create('events', function (Blueprint $table) {
             $table->id();
-            $table->string("type");
+            $table->string('type');
             $table->text("image");
             $table->boolean("done");
             $table->timestamps();
+            $table->foreign('type')->references('event')->on('event_actions')->onDelete('cascade');
         });
     }
 

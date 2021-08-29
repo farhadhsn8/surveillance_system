@@ -9,4 +9,8 @@ class Event extends Model
 {
     use HasFactory;
     protected $guarded=[];
+
+    public function event_action(){
+        return $this->belongsTo(event_action::class,'type' ,'event');
+    }
 }
