@@ -93,8 +93,8 @@ class EventController extends Controller
 
     public function destroy(Event $event)
     {
+        $event->delete();
         if ($this->removeImage($event->image)){
-            $event->delete();
             $msg='  با موفقیت حذف شد';
             return redirect(route('events'))->with('success',$msg);
         }
