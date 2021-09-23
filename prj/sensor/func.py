@@ -106,7 +106,7 @@ def saveEvent(img , time ,type): #depreciate
      host="localhost",
      user="root",
      password="",
-     port = 3308 ,
+     port = 3306 ,
      database="surveillance_system"
     )
 

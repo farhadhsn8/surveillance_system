@@ -15,7 +15,7 @@ class CreateEventActionsTable extends Migration
     {
         Schema::create('event_actions', function (Blueprint $table) {
             $table->id();
-            $table->string('event');
+            $table->string('event')->unique();
             $table->text('action');
             $table->timestamps();
         });
