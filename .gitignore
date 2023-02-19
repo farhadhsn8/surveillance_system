@@ -1,3 +1,6 @@
 prj/sensor/images
 prj/controller/public/images
 docs
+*.doc
+*.docx
+*.pdf
